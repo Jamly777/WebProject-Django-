@@ -1,0 +1,69 @@
+.inner2 {
+  position: relative;
+  left: -35%;
+  top: 10%;
+  background: #09c999;
+  padding: 1em;
+  border-radius: 10px;
+  width: 500px;
+  height: 600px;
+  clip-path: circle(10% at 50% 14.5%);
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+}
+.inner2:hover {
+  clip-path: circle(175%);
+  background: #00B6FF;
+}
+.inner2 h1 {
+  color: white;
+  margin: 0;
+}
+.inner2 p {
+  color: white;
+  font-size: .8rem;
+}
+.inner2 span {
+  float: right;
+  color: white;
+  font-weight: bold;
+  transition: color .5s;
+  position: relative;
+  margin-right: 40%;
+  margin-top: 10%;
+  line-height:12px;
+  font-size:24px;
+}
+.inner2:hover span {
+  color: rgba(255, 255, 255, 0);
+}
+.input1 {
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+}
+.input2 {
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+}
+.input3 {
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+}
+.input4 {
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+}
+.input5 {
+    border: 1px solid #ccc;
+    padding: 7px 0px;
+    border-radius: 3px;
+    padding-left:5px;
+}

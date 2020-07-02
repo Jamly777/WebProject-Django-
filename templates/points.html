@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/learn.css">
+    <link rel="stylesheet" href="/static/css/sweetalert.css">
+    <style>
+        .demo{width:300px; margin:60px auto 10px auto}
+        @media only screen and (min-width: 420px) {
+            .demo{width:500px; margin:60px auto 10px auto}
+        }
+        button, .button {
+	    background-color: #AEDEF4;color: white;border: none;box-shadow: none;
+        font-size: 17px;font-weight: 500;font-weight: 600;
+        border-radius: 3px;padding: 15px 35px;margin: 26px 5px 0 5px;cursor: pointer; }
+        button:hover, .button:hover {background-color: #a1d9f2; }
+    </style>
+</head>
+<body>
+    <span>我要学习</span>
+    <p>一天只能提交一次哦！</p>
+    <p>今天是多少号呀？号号？：</p><input class="input1" type="date" name="date">
+    <p><input class="input2" type="checkbox" name="check" value="miss" checked="checked">每日一问：今儿想号号了吗？</p>
+    <p>
+        来描述下有多想：
+        <select name="select" class="input3">
+            <option value="very much">超级超级想</option>
+            <option value="very much">还是超级超级想</option>
+            <option value="very much">还是超级超级想</option>
+        </select>
+    </p>
+    <p>我小阿宝,今天吃的是啥子啊？分享哈呢</p>
+    <input class="input4" type="text" name="food">
+    <p>学习是一个过程，不是一蹴而就的。我小阿宝，休息啦！快来找我聊天啦！</p>
+    <p>学习时长（关系到你的学习点数哦！哈哈）</p>
+    <input class="input5" type="number" name="times">
+    <div class="demo_2">
+        <button type="submit" id="submit">我要学习点数啦！！！</button>
+    </div>
+    </form>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/sweetalert.min.js"></script>
+<script>
+$("input[name=check]").click(function(){
+if($(this).attr("checked")==true){
+$(this).val('miss');
+}else{
+$(this).val('dismiss');
+}
+})
+$(".demo_2 button").click(function() {
+    let date =$('.input1').val()
+    let check =$('.input2').val()
+    let select =$('.input3').val()
+    let food =$('.input4').val()
+    let hours =$('.input5').val()
+    console.log(date,check,select,food,hours)
+    let obj = {
+        date,
+        check,
+        select,
+        food,
+        hours
+    }
+    $.ajax({
+        url: 'points/',
+        method:'POST',
+        dataType: 'JSON',
+        data : obj,
+        success: function (code) {
+            console.log(code)
+            if (code.Code == 'SUCCESS')
+            {
+                swal('Good','小黄黄的学习点已成功记录','success');
+            }
+            if (code.Code == 'miss_fail')
+            {
+                swal('OMG','你龟儿不想我？','error');
+            }
+            if (code.Code == 'date_fail')
+            {
+                swal('OMG','小黄黄仔细看看是不是日期啦？','error');
+            }
+            if (code.Code == 'food_fail')
+            {
+                swal('OMG','小黄黄都不分享下吃的啥吗？','error');
+            }
+            if (code.Code == 'times_fail')
+            {
+                swal('OMG','不想要学习点了吗？憨憨黄','error');
+            }
+            if (code.Code == 'repeat_fail')
+            {
+                swal('OMG','你已经提交过一次啦！！你个批娃儿','error');
+            }
+        }
+    })
+});
+</script>
+<div class="sweet-overlay" tabindex="-1" style="opacity: -0.03; display: none;"></div><div class="sweet-alert hideSweetAlert" data-custom-class="" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-outside-click="false" data-has-done-function="false" data-animation="pop" data-timer="null" style="display: none; margin-top: -177px; opacity: -0.01;"><div class="sa-icon sa-error" style="display: none;">
+      <span class="sa-x-mark">
+        <span class="sa-line sa-left"></span>
+        <span class="sa-line sa-right"></span>
+      </span>
+    </div><div class="sa-icon sa-warning" style="display: none;">
+      <span class="sa-body"></span>
+      <span class="sa-dot"></span>
+    </div><div class="sa-icon sa-info" style="display: none;"></div><div class="sa-icon sa-success" style="display: block;">
+      <span class="sa-line sa-tip"></span>
+      <span class="sa-line sa-long"></span>
+
+      <div class="sa-placeholder"></div>
+      <div class="sa-fix"></div>
+    </div><div class="sa-icon sa-custom" style="display: none; width: 80px; height: 80px;"></div><h2>Good!</h2>
+    <p style="display: block;">弹出了一个操作成功的提示框</p>
+    <fieldset>
+      <input type="text" tabindex="3" placeholder="">
+      <div class="sa-input-error"></div>
+    </fieldset><div class="sa-error-container">
+      <div class="icon">!</div>
+      <p>Not valid!</p>
+    </div><div class="sa-button-container">
+      <button class="cancel" tabindex="2" style="display: none; box-shadow: none;">取消</button>
+      <button class="confirm" tabindex="1" style="display: inline-block; background-color: rgb(174, 222, 244); box-shadow: rgba(174, 222, 244, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;">确定</button>
+    </div></div>
+</body>
+</html>
