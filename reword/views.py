@@ -31,7 +31,7 @@ def getreword(request):
             ponints=models.learnpoints.objects.get(id='0')
             ponints.points=rest
             ponints.save()
-            send_mail('奖品的兑换','小小黄兑换了'+goodsname,'',['Hao4work@163.com'], fail_silently=False)
+            send_mail('奖品的兑换','小小黄兑换了'+goodsname,'',['849336620@qq.com'], fail_silently=False)
         else:
             code['Code']='FAIL'
             code['info']='学习点不够'

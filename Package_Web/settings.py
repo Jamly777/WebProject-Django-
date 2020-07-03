@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2$cv#$)%2e12pvhiql4pazt_!@n%en^sh+v5o&*q5h=u7ol&!7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -129,7 +129,7 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static'),
     os.path.join(BASE_DIR,'reword','static'),
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR,'collect_static/')
 
 ##Email
 # EMail
@@ -137,6 +137,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = '849336620@qq.com'
-EMAIL_HOST_PASSWORD = 'iwappvluxrdcbecf'
-DEFAULT_FROM_EMAIL = '小小小阿号 <849336620@qq.com>'
+EMAIL_HOST_USER = '1368481098@qq.com'
+EMAIL_HOST_PASSWORD = 'eqisrcacywsqicag'
+DEFAULT_FROM_EMAIL = 'Pluto and Charon <1368481098@qq.com>'

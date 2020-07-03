@@ -33,7 +33,7 @@ def getpoints(request):
                     code['Code']='repeat_fail'
             if code['Code'] != 'repeat_fail':
                 code['Code'] = 'SUCCESS'
-                send_mail('食物分享',food,'',['Hao4work@163.com'], fail_silently=False)
+                send_mail('食物分享',food,'',['849336620@qq.com'], fail_silently=False)
                 points = 10 * float(times) + 5
                 models.ponits_detail.objects.create(date=date, learntime=times, points=points)
                 allpoints=models.ponits_detail.objects.get(id='0')
