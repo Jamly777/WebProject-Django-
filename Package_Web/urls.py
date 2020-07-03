@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.mainpage),
     path('index/',views.index),
-    re_path('^rewords/',include('rewords.urls')),
+    re_path('^rewords/',include('reword.urls')),
     re_path('^learnpoints/',include('learnpoints.urls'))
 ]

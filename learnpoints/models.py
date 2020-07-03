@@ -1,5 +1,5 @@
 from django.db import models
-from rewords.models import points
+from reword.models import ponits_detail
 # Create your models here.
 class realtime(models.Model):
     date=models.CharField(max_length=255,primary_key=True)

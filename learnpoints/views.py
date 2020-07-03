@@ -1,13 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest,HttpResponse
-from django.db.models import Sum
 from . import models
 import json
-from email import encoders
-from email.header import Header
-from email.mime.text import MIMEText
-from email.utils import parseaddr, formataddr
-import smtplib
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -17,8 +12,7 @@ def learnpoints(request):
 def getpoints(request):
     code = {}
     code['Code']=''
-    all_records=models.points.objects.all()
-    points_dict=models.points.objects.aggregate(allpoints=Sum('points'))
+    all_records=models.ponits_detail.objects.all()
     if request.method == 'GET':
         date=request.GET.get('date')
         #missme=on or None
@@ -39,28 +33,10 @@ def getpoints(request):
                     code['Code']='repeat_fail'
             if code['Code'] != 'repeat_fail':
                 code['Code'] = 'SUCCESS'
-                mail(food)
+                send_mail('食物分享',food,'',['Hao4work@163.com'], fail_silently=False)
                 points = 10 * float(times) + 5
-                models.points.objects.create(date=date, learntime=times, points=points,
-                                             allpoints=points_dict['allpoints'] + points)
+                models.ponits_detail.objects.create(date=date, learntime=times, points=points)
+                allpoints=models.ponits_detail.objects.get(id='0')
+                allpoints += points
+                allpoints.save()
     return HttpResponse(json.dumps(code))
-
-def mail(text):
-    from_addr='1368481098@qq.com'
-    to_addr='849336620@qq.com'
-    password='ouwwlemoszmkfiff'
-    smtp_server='smtp.qq.com'
-    msg=MIMEText(text)
-    msg['From']=_format_addr('小阿黄呀小阿黄 <%s>' % from_addr)
-    msg['To']=_format_addr('小阿号 <%s>' % to_addr)
-    msg['Subject']=Header('小阿黄的食物分享','utf-8').encode()
-
-    server=smtplib.SMTP_SSL(smtp_server,465)
-    server.set_debuglevel(1)
-    server.login(from_addr, password)
-    server.sendmail(from_addr, [to_addr], msg.as_string())
-    server.quit()
-
-def _format_addr(s):
-    name, addr = parseaddr(s)
-    return formataddr((Header(name, 'utf-8').encode(), addr))

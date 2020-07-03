@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
 
   <title></title>
-    <link rel="stylesheet" href="/static/css/style.css" media="screen"/>
+    <link rel="stylesheet" href="/static/css/style2.css" media="screen"/>
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 
 </head>
@@ -24,10 +24,12 @@
 
 </div>
 <ul class="choose">
-  <li value="10"><img src="/static/image/4.jpg" value="10" name="img"></li>
-  <li value="20"><img src="/static/image/5.jpg" value="20" name="img"></li>
-  <li value="30"><img src="/static/image/6.jpg" value="30" name="img"></li>
-  <li value="40"><img src="/static/image/7.jpg" value="40" name="img"></li>
+  <li value="100"><img src="/static/image/hug.jpg" value="10" name="img"></li>
+  <li value="200"><img src="/static/image/gift.jpg" value="20" name="img"></li>
+  <li value="300"><img src="/static/image/luoshifen.jpg" value="30" name="img"></li>
+  <li value="400"><img src="/static/image/jianshelu.jpg" value="40" name="img"></li>
+  <li value="800"><img src="/static/image/shop.jpg" value="40" name="img"></li>
+  <li value="1200"><img src="/static/image/travel.jpg" value="40" name="img"></li>
 </ul>
 
 
@@ -68,7 +70,7 @@
               if ($('li.selected').length == 0) {
                   $('li').addClass('selected');
                   $('.select').addClass('selected');
-                  all = 100;
+                  all = 3000;
               }
               else {
                   $('li').removeClass('selected');
@@ -79,21 +81,29 @@
               console.log(all)
           });
           function name(param1) {
-              if(param1==10)
+              if(param1==100)
               {
-                  return "a"
+                  return "拥抱"
               }
-              if(param1==20)
+              if(param1==200)
               {
-                  return "b"
+                  return "神秘礼物"
               }
-              if(param1==30)
+              if(param1==300)
               {
-                  return "c"
+                  return "螺狮粉"
               }
-              if(param1==40)
+              if(param1==400)
               {
-                  return "d"
+                  return "建设路一日游"
+              }
+              if(param1==800)
+              {
+                  return "逛街，买就完事"
+              }
+              if(param1==1200)
+              {
+                  return "旅游噢！！"
               }
           }
           // number of selected items

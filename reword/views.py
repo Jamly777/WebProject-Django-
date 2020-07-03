@@ -27,11 +27,11 @@ def getreword(request):
             code['Code']='SUCCESS'
             code['learn']=rest
             models.ponits_detail.objects.create(date=str(date).split()[0],learntime=0,
-                                                points=-rest,info='兑换奖品')
+                                                points=-price,info='兑换奖品')
             ponints=models.learnpoints.objects.get(id='0')
             ponints.points=rest
             ponints.save()
-            #send_mail('奖品的兑换','小小黄兑换了'+goodsname,'',['1368481098@qq.com'], fail_silently=False)
+            send_mail('奖品的兑换','小小黄兑换了'+goodsname,'',['Hao4work@163.com'], fail_silently=False)
         else:
             code['Code']='FAIL'
             code['info']='学习点不够'

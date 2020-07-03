@@ -64,7 +64,7 @@ $(function(){
 </script>
 </head>
 <body>
-
+<p>城市：{{ city }}, 今日天气：{{ tips }} , {{ temp }}</p>
 <div class="box">
 
   <div class="sun">
@@ -149,10 +149,7 @@ $(function(){
     <div class="containerinfo">
         <div class="inner"> <span>i</span>
             <h1>来自号号的关心</h1>
-            <p>有降水，推荐您在室内进行健身休闲运动；若坚持户外运动，须注意携带雨具并注意避雨防滑。
-            紫外线强度较弱，建议出门前涂擦SPF在12-15之间、PA+的防晒护肤品。
-            各项气象条件适宜，无明显降温过程，发生感冒机率较低。
-            天气热，建议着短裙、短裤、短薄外套、T恤等夏季服装。</p>
+            <p>{{ info }}</p>
         </div>
     </div>
 </div>
