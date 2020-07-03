@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title></title>
+    <link rel="stylesheet" href="/static/css/style.css" media="screen"/>
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="clearfix">
+  <button class="select">&nbsp;</button>
+  <h1>你的学习点数为：<points>{{ points }}</points></h1>
+  <button class="send" data-counter="0">&#10004;</button>
+</div>
+  <div class="charge"><button style="color: black">我要兑换</button></div>
+
+<div style="text-align:center;clear:both">
+
+</div>
+<ul class="choose">
+  <li value="10"><img src="/static/image/4.jpg" value="10" name="img"></li>
+  <li value="20"><img src="/static/image/5.jpg" value="20" name="img"></li>
+  <li value="30"><img src="/static/image/6.jpg" value="30" name="img"></li>
+  <li value="40"><img src="/static/image/7.jpg" value="40" name="img"></li>
+</ul>
+
+
+
+<script type="text/javascript">
+      var all=0
+      var rewordname=new Array()
+      $(function() {
+          $('li').click(function () {
+              $(this).toggleClass('selected');
+              if ($('li.selected').length == 0)
+                  $('.select').removeClass('selected');
+              else
+                  $('.select').addClass('selected');
+                  if ($(this).hasClass('selected'))
+                  {
+                      all +=$(this).val()
+                      rn=name($(this).val())
+                      rewordname.push(rn)
+                  }
+                  else
+                  {
+                      all -=$(this).val()
+                      rn=name($(this).val())
+                      for(i=0;i<rewordname.length;i++)
+                      {
+                          if(rewordname[i]==rn)
+                          {
+                              rewordname.splice(i,1)
+                          }
+                      }
+                  }
+              console.log(all)
+              console.log(rewordname)
+              counter();
+          });
+          $('.select').click(function () {
+              if ($('li.selected').length == 0) {
+                  $('li').addClass('selected');
+                  $('.select').addClass('selected');
+                  all = 100;
+              }
+              else {
+                  $('li').removeClass('selected');
+                  $('.select').removeClass('selected');
+                  all = 0
+              }
+              counter();
+              console.log(all)
+          });
+          function name(param1) {
+              if(param1==10)
+              {
+                  return "a"
+              }
+              if(param1==20)
+              {
+                  return "b"
+              }
+              if(param1==30)
+              {
+                  return "c"
+              }
+              if(param1==40)
+              {
+                  return "d"
+              }
+          }
+          // number of selected items
+          function counter() {
+              if ($('li.selected').length > 0)
+                  $('.send').addClass('selected');
+              else
+                  $('.send').removeClass('selected');
+              $('.send').attr('data-counter',$('li.selected').length);
+          }
+
+          $(".charge button").click(function () {
+              let price = all;
+              let point = document.getElementsByTagName('points')[0].innerHTML;
+              let goods=rewordname.join(',')
+              let obj = {
+                    price,
+                    point,
+                    goods,
+                };
+              console.log(obj)
+                $.ajax({
+                    url:'getreword/',
+                    method: 'POST',
+                    dataType: 'JSON',
+                    data:obj,
+                    success: function (code) {
+                        if ( code.Code=='SUCCESS')
+                        {
+                            alert("兑换成功")
+                            document.getElementsByTagName('points')[0].innerHTML=code.learn;
+                        }
+                        else
+                            {
+                                alert("失败,"+code.info)
+                            }
+                    }
+                })
+	        })
+      });
+</script>
+
+</body>
+
+</html>
